@@ -1,0 +1,168 @@
+-- Comandos sql para a criação das triggers de historiamento
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HBNF
+BEFORE UPDATE OR DELETE ON BENEFICIARIOS
+FOR EACH ROW
+BEGIN
+    INSERT INTO HBENEFICIARIOS values(
+        :OLD.bnf_id, 
+        :OLD.bnf_cpf, 
+        :OLD.bnf_dat_nasc,
+        :OLD.bnf_deficiente_fisico, 
+        :OLD.bnf_sex_id,
+        :OLD.bnf_rcs_id, 
+        :OLD.bnf_mun_id,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HBSL
+BEFORE UPDATE OR DELETE ON BOLSAS
+FOR EACH ROW
+BEGIN
+    INSERT INTO HBOLSAS values(
+        :OLD.bol_id,
+        :OLD.bol_ano,
+        :OLD.bol_cur_id,
+        :OLD.bol_ins_id,
+        :OLD.bol_bnf_id,
+        :OLD.bol_tip_id,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HCRS
+BEFORE UPDATE OR DELETE ON CURSOS
+FOR EACH ROW
+BEGIN
+    INSERT INTO HCURSOS values(
+        :OLD.cur_id,
+        :OLD.cur_nome,
+        :OLD.cur_mod_id,
+        :OLD.cur_tur_id,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HITE
+BEFORE UPDATE OR DELETE ON INSTITUICOES_ENSINO
+FOR EACH ROW
+BEGIN
+    INSERT INTO HINSTITUICOES_ENSINO values(
+        :OLD.ins_id,
+        :OLD.ins_nome,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HMDL
+BEFORE UPDATE OR DELETE ON MODALIDADES
+FOR EACH ROW
+BEGIN
+    INSERT INTO HMODALIDADES values(
+        :OLD.mod_id,
+        :OLD.mod_nome,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HMUN
+BEFORE UPDATE OR DELETE ON MUNICIPIOS
+FOR EACH ROW
+BEGIN
+    INSERT INTO HMUNICIPIOS values(
+        :OLD.mun_id, 
+        :OLD.mun_nome, 
+        :OLD.mun_ufs_id,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HRCS
+BEFORE UPDATE OR DELETE ON RACAS
+FOR EACH ROW
+BEGIN
+    INSERT INTO HRACAS values(
+        :OLD.rcs_id, 
+        :OLD.rcs_nome, 
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HRGS
+BEFORE UPDATE OR DELETE ON REGIOES
+FOR EACH ROW
+BEGIN
+    INSERT INTO HREGIOES values(
+        :OLD.reg_id,
+        :OLD.reg_nome,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HSEX
+BEFORE UPDATE OR DELETE ON SEXOS
+FOR EACH ROW
+BEGIN
+    INSERT INTO HSEXOS values(
+        :OLD.sex_id, 
+        :OLD.sex_letra,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HTPB
+BEFORE UPDATE OR DELETE ON TIPOS_BOLSA
+FOR EACH ROW
+BEGIN
+    INSERT INTO HTIPOS_BOLSA values(
+        :OLD.tip_id,
+        :OLD.tip_nome,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HTRN
+BEFORE UPDATE OR DELETE ON TURNOS_CURSO
+FOR EACH ROW
+BEGIN
+    INSERT INTO HTURNOS_CURSO values(
+        :OLD.tur_id,
+        :OLD.tur_nome,
+        SYSDATE
+    );
+END;
+
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER TG_HUFS
+BEFORE UPDATE OR DELETE ON UFS
+FOR EACH ROW
+BEGIN
+    INSERT INTO HUFS values(
+        :OLD.ufs_id, 
+        :OLD.ufs_sigla,
+        :OLD.ufs_reg_id,
+        SYSDATE
+    );
+END;

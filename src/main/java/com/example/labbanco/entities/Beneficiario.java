@@ -37,6 +37,6 @@ public class Beneficiario {
     private Raca raca;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bnf_mod_id")
+    @JoinColumn(name = "bnf_mun_id")
     private Municipio municipio;
 }
