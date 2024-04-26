@@ -101,6 +101,11 @@ public class ProuniService {
 
             Beneficiario beneficiario = new Beneficiario();
             beneficiario.setCpf(pdaProuni2018.getCpfBeneficiarioBolsa());
+            if(pdaProuni2018.getBeneficiarioDeficienteFisico() == null ) {
+                pdaProuni2018.setBeneficiarioDeficienteFisico("N");
+            } else {
+                pdaProuni2018.setBeneficiarioDeficienteFisico(pdaProuni2018.getBeneficiarioDeficienteFisico());
+            }
             beneficiario.setDeficienteFisico(pdaProuni2018.getBeneficiarioDeficienteFisico().contains("S"));
 
             Sexo sexo = sexoRepository.findByLetra(pdaProuni2018.getSexoBeneficiarioBolsa());
